@@ -24,6 +24,7 @@ app.use(cors())
 
 app.get('/',(req,res)=>{
     res.send('hellow world')
+    res.send("how are khana kha ke jana")
 })
 
 
