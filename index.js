@@ -1,6 +1,7 @@
 const express =require('express')
 const cors =require('cors')
 const app =express();
+require('dotenv').config();
 const overAllitems= require("./data")
 
 
@@ -34,6 +35,7 @@ app.get('/api/course/:id',(req,res)=>{
   console.log(course)
 })
 
+
 app.get('/api/item_cetegory',(req,res)=>{
     res.send(overAllitems)
 })
@@ -45,6 +47,9 @@ app.get('/api/course',(req,res)=>{
   res.send(courses)
   //console.log(course)
 })
-app.listen(4000,()=>{
-    console.log("listening at port  3000...")
+
+console.log(process.env.PORT)
+const port=process.env.PORT || 3000
+app.listen(port,()=>{
+    console.log(`listening at port  ${port}...`)
 })
