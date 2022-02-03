@@ -38,7 +38,9 @@ app.post('/api/v1/site/all',(req,res)=>{
     
 })
 app.post('/api/v1/add/user/site/users/:id',(req,res)=>{
-    
+    //console.log(parseInt(req.params.id))
+    const singleEmergency=emergencyItem.find((e)=>e.id===parseInt(req.params.id))
+    res.send(singleEmergency)
 })
 
 
