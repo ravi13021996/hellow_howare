@@ -52,7 +52,7 @@ app.get('/api/course/:id',(req,res)=>{
 
 
 app.post('/api/item_cetegory',(req,res)=>{
-    res.send(overAllitems)
+    res.send(emergencyItem)
     console.log(overAllitems)
 })
 
