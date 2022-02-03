@@ -32,11 +32,11 @@ app.post('/v1/login',(req,res)=>{
     res.send("login done ")
 })
 
+
 app.post('/api/v1/site/all',(req,res)=>{
     res.send(emergencyItem)
     
 })
-
 app.post('/api/v1/add/user/site/users/:id',(req,res)=>{
     
 })
@@ -51,8 +51,8 @@ app.get('/api/course/:id',(req,res)=>{
 })
 
 
-app.post('/api/item_cetegory',(req,res)=>{
-    res.send(emergencyItem)
+app.get('/api/item_cetegory',(req,res)=>{
+    res.send(overAllitems)
     console.log(overAllitems)
 })
 
