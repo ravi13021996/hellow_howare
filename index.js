@@ -51,7 +51,7 @@ app.get('/api/course/:id',(req,res)=>{
 })
 
 
-app.get('/api/item_cetegory',(req,res)=>{
+app.post('/api/item_cetegory',(req,res)=>{
     res.send(overAllitems)
     console.log(overAllitems)
 })
