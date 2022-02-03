@@ -3,7 +3,7 @@ const cors =require('cors')
 const app =express();
 require('dotenv').config();
 const overAllitems= require("./data")
-
+const emergencyItem=require("./emergencyData") 
 
 const courses=[
     {
@@ -28,6 +28,20 @@ app.get('/',(req,res)=>{
 })
 
 
+app.post('/v1/login',(req,res)=>{
+    res.send("login done ")
+})
+
+app.post('/api/v1/site/all',(req,res)=>{
+    res.send(emergencyItem)
+    
+})
+
+app.post('/api/v1/add/user/site/users/:id',(req,res)=>{
+    
+})
+
+
 
 app.get('/api/course/:id',(req,res)=>{
     console.log(req.params.id)
@@ -39,6 +53,7 @@ app.get('/api/course/:id',(req,res)=>{
 
 app.get('/api/item_cetegory',(req,res)=>{
     res.send(overAllitems)
+    console.log(overAllitems)
 })
 
 
