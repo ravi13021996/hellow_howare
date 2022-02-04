@@ -48,18 +48,14 @@ app.post('/v1/login',(req,res)=>{
 
 
 app.post('/api/v1/site/all',async (req,res)=>{
-    
-    if(req.body.id){
         let temp =await User.find({id:req.body.id})
-        res.send(temp)
-    }
-    else{
-        let temp =await User.find()
-        res.send(temp)
-    }
-    
-    
-    
+        res.send(temp)     
+})
+
+app.post('/api/v1/site/all/:id',async (req,res)=>{
+    console.log(req.params)
+    let temp =await User.find({id:req.params.id})
+     res.send(temp)
 })
 // app.post('/api/v1/add/user/site/users/:id',(req,res)=>{
 //     //console.log(parseInt(req.params.id))
