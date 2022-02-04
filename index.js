@@ -46,9 +46,10 @@ app.post('/v1/login',(req,res)=>{
 })
 
 
-app.post('/api/v1/site/all',(req,res)=>{
+app.post('/api/v1/site/all',async (req,res)=>{
 
-    res.send(emergencyItem)
+    console.log(await User.find())
+    res.send("done")
     
 })
 app.post('/api/v1/add/user/site/users/:id',(req,res)=>{
@@ -56,6 +57,7 @@ app.post('/api/v1/add/user/site/users/:id',(req,res)=>{
     const singleEmergency=emergencyItem.find((e)=>e.id===parseInt(req.params.id))
     res.send(singleEmergency)
 })
+
 let id=10;
 let id1
     let name1
