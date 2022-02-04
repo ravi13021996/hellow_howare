@@ -22,6 +22,7 @@ const courses=[
         name:"science"
     }
 ]
+app.use(cors())
 let db="mongodb+srv://emergency1:Ravi%402020@cluster0.l0zir.mongodb.net/emergency1?retryWrites=true&w=majority";
 mongoose.connect(db,{
    useNewUrlParser:true,
@@ -33,7 +34,7 @@ mongoose.connect(db,{
 
 app.use(express.json())
 
-app.use(cors())
+
 
 app.get('/',(req,res)=>{
     
