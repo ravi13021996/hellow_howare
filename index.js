@@ -47,9 +47,17 @@ app.post('/v1/login',(req,res)=>{
 
 
 app.post('/api/v1/site/all',async (req,res)=>{
-
-    let temp =await User.find()
-    res.send(temp)
+    
+    if(req.body.id){
+        let temp =await User.find({id:req.body.id})
+        res.send(temp)
+    }
+    else{
+        let temp =await User.find()
+        res.send(temp)
+    }
+    
+    
     
 })
 app.post('/api/v1/add/user/site/users/:id',(req,res)=>{
@@ -119,7 +127,7 @@ app.post('/api/v1/add/user/site/role',async (req,res)=>{
                 
                 
             }
-        }).then(()=>res.send({messege:"document updated done"}))    
+        }).then(()=>res.send({messege:"document updated done"}))
     }
     else{
         let id=11;
