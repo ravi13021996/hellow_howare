@@ -48,8 +48,8 @@ app.post('/v1/login',(req,res)=>{
 
 app.post('/api/v1/site/all',async (req,res)=>{
 
-    console.log(await User.find())
-    res.send("done")
+    let temp =await User.find()
+    res.send(temp)
     
 })
 app.post('/api/v1/add/user/site/users/:id',(req,res)=>{
