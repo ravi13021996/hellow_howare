@@ -48,7 +48,7 @@ app.post('/v1/login',(req,res)=>{
 
 
 app.post('/api/v1/site/all',async (req,res)=>{
-        let temp =await User.find({id:req.body.id})
+        let temp =await User.find()
         res.send(temp)     
 })
 
