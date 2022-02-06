@@ -53,7 +53,7 @@ app.post('/api/v1/site/all',async (req,res)=>{
     console.log(await User.countDocuments())  
     console.log(req.body)
          let temp =await User.find({id:{$gte:req.body.pageNo*req.body.pageSize+10-req.body.pageSize+1,$lte:req.body.pageNo*req.body.pageSize+10}})
-         let data1={list:temp,totalElement:await User.countDocuments()}
+         let data1={list:temp,totalElement:await User.countDocuments(),byYou:req.body}
          res.send(data1)     
 })
 
