@@ -6,7 +6,8 @@ const overAllitems= require("./data")
 const emergencyItem=require("./emergencyData") 
 const mongoose =require('mongoose')
 const User=require("./model/userSchema")
-const bodyParser =require('body-parser')
+const bodyParser =require('body-parser');
+const { where } = require('./model/userSchema');
 app.use(bodyParser.json());
 const courses=[
     {
@@ -48,13 +49,18 @@ app.post('/v1/login',(req,res)=>{
 
 
 app.post('/api/v1/site/all',async (req,res)=>{
-        let temp =await User.find()
-        res.send(temp)     
+    //console.log(req.body.pageNo*req.body.pageSize+10-req.body.pageSize+1,req.body.pageNo*req.body.pageSize+10)
+    console.log(await User.countDocuments())  
+    console.log(req.body)
+         let temp =await User.find({id:{$gte:req.body.pageNo*req.body.pageSize+10-req.body.pageSize+1,$lte:req.body.pageNo*req.body.pageSize+10}})
+         let data1={list:temp,totalElement:await User.countDocuments()}
+         res.send(data1)     
 })
 
 app.post('/api/v1/site/all/:id',async (req,res)=>{
     console.log(req.params)
     let temp =await User.find({id:req.params.id})
+    
      res.send(temp)
 })
 // app.post('/api/v1/add/user/site/users/:id',(req,res)=>{
@@ -153,7 +159,68 @@ app.get('/api/course/:id',(req,res)=>{
   console.log(course)
 })
 
+let i;
+// app.post('/api/site',async (req,res)=>{
 
+//     console.log(req.body)
+//     let reqData= {init: `${req.body.pageSize*req.body.pageNo-req.body.pageSize+1}`,last:`${req.body.pageSize*req.body.pageNo}`}
+//     console.log(reqData.init,reqData.last)
+    
+//     i= 5;
+//     let newArr=[];
+//    for(i=`${reqData.init}`;i<=reqData.last;i++){
+//       (function(i){
+//         console.log(i) 
+//         newArr.push(i)
+//       })(i)
+        
+//     }
+//     //let temp=myfunc(req);
+//     res.send("done")
+    
+
+
+// })
+
+
+app.post("/api/site",async (req,res)=>{
+    console.log(req.body)
+    let reqData= {init: `${req.body.pageSize*req.body.pageNo-req.body.pageSize+1}`,last:`${req.body.pageSize*req.body.pageNo}`}
+    const {init,last}=reqData;
+    console.log(typeof(reqData.init))
+    //console.log(typeof(parseInt(reqData.init)))
+    let b;
+    for(let i=0;i<1000;i++){
+        if(i==reqData.init){
+            b=i
+        }
+    }
+    
+    let a= parseInt(reqData.init)
+    console.log(a,reqData.init)
+    //console.log(await User.find({id:req.body.pageSize*2}))
+    console.log(await User.find({id:a}))
+    //console.log(await User.find({id:{$range:[reqData.init,reqData.last]}}))
+})
+
+
+
+app.post("/you/all", async (req,res)=>{
+    console.log(req.body)
+    let reqData= {init: `${req.body.pageSize*req.body.pageNo-req.body.pageSize+11}`,last:`${req.body.pageSize*req.body.pageNo+10}`}
+        console.log(reqData.init,reqData.last)
+    
+    
+   let final=await User.find({id:{$gte:reqData.init,$lte:reqData.last}})
+ res.send(final)
+
+})
+const  myfunc=async (req)=>{
+    
+
+    console.log(i)
+    
+} 
 app.get('/api/item_cetegory',(req,res)=>{
     res.send(overAllitems)
     console.log(overAllitems)
